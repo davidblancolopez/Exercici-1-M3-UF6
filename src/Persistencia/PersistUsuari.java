@@ -4,6 +4,7 @@ import Vista.VistaText;
 import exercici.pkg1.m3.uf6.Model.Usuari;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,8 +19,9 @@ public class PersistUsuari {
 
     /**
      * Metode per afegir usuaris a la BBDD.
+     *
      * @param u
-     * @return 
+     * @return
      */
     public boolean afegirUsuari(Usuari u) {
         boolean afegit = true;
@@ -37,26 +39,89 @@ public class PersistUsuari {
             if (pt.executeUpdate() == 0) {
                 afegit = false;
             }
-            System.out.println("És tancat: " + pt.isClosed());
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             afegit = false;
         }
         return afegit;
     }
-    
+
     /**
      * Metode per afegir arrays a la BBDD.
+     *
      * @param llista
-     * @return 
+     * @return
      */
-    public boolean afegirArray (List<Usuari> llista) {
+    public boolean afegirArray(List<Usuari> llista) {
         boolean afegit = true;
-        
-        
-        
+
+        try {
+            con.setAutoCommit(false);
+            String sentencia = "Insert into Usuaris (NOM,COGNOM, NIF) VALUES (?,?,?)";
+            PreparedStatement pt = con.prepareStatement(sentencia);
+            for (Usuari u : llista) {
+                pt = con.prepareStatement(sentencia);
+                pt.setString(1, u.getNom());
+                pt.setString(2, u.getCognom());
+                pt.setString(3, u.getNif());
+            }
+
+            pt.close();
+            con.commit();
+            afegit = true;
+        } catch (SQLException ex) {
+
+        } finally {
+            try {
+                con.setAutoCommit(true);
+            } catch (SQLException ex) {
+
+            }
+        }
+
         return afegit;
     }
-    
-    
+
+    /**
+     * Metode per a esborrar usuaris de la BBDD.
+     *
+     * @param nif
+     * @return
+     */
+    public boolean esborrarUsuari(String nif) {
+        boolean borrat = true;
+
+        String sentencia = "Delete from Usuari Where nif = ?";
+        try {
+            PreparedStatement pt = con.prepareStatement(sentencia);
+            pt.setString(1, nif);
+            pt.executeUpdate();
+
+            borrat = true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            borrat = false;
+        }
+        return borrat;
+    }
+
+    public boolean modificat(Usuari u) {
+        boolean modificat = true;
+
+        String sentencia = "UPDATE Usuaris SET NOM = ?, COGNOM = ? WHERE NIF = ? ";
+        try {
+            PreparedStatement pt = con.prepareStatement(sentencia);
+            pt = con.prepareStatement(sentencia);
+            pt.setString(1, u.getNom());
+            pt.setString(2, u.getCognom());
+            pt.setString(3, u.getNif());
+            modificat = pt.executeUpdate() > 0;
+            
+        } catch (SQLException ex) {
+
+        }
+
+        return modificat;
+    }
+
 }

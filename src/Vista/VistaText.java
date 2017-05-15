@@ -61,5 +61,13 @@ public class VistaText {
         return llista;
     }
     
-    
+    /**
+     * Metode per a demanar el NIF del usuari que es vol esborrar.
+     * @return 
+     */
+    public String DemanarNif(){
+        System.out.println("Introdueix el NIF de l'usuari a esborrar: ");
+        String nif = lector.next();
+        return nif;
+    }
 }

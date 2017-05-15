@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersistUsuari {
@@ -142,14 +143,40 @@ public class PersistUsuari {
             pt.setString(1, nif);
             ResultSet rs = pt.executeQuery();
             while (rs.next()) {
+                //Obtenim nom, cognom de usuari.
                 nom = rs.getString("nom");
                 cognom = rs.getString("cognom");
             }
         } catch (SQLException ex) {
             
         }
+        //Retornem un nou objecte usuari.
         return new Usuari(nom, cognom, nif);
 
+    }
+    
+    
+    public List<Usuari> cercarTots(){
+        List<Usuari> llista = new ArrayList<>();
+        String sentencia = "SELECT * FROM Usuaris";
+        String nom = null, cognom = null, nif = null;
+        try{
+            PreparedStatement pt = con.prepareStatement(sentencia);
+            pt.setString(1, nif);
+            ResultSet rs = pt.executeQuery();
+            while (rs.next()) {
+                //Obtenim nom, cognom i nif de usuari.
+                nom = rs.getString("nom");
+                cognom = rs.getString("cognom");
+                nif = rs.getString("nif");
+                //Afegim un nou objecte usuari a la llista.
+                llista.add(new Usuari(nom, cognom, nif));
+            }
+        }catch(SQLException ex){
+            
+        }
+        //Retornem la llista d'usuaris.
+        return llista;
     }
 
 }

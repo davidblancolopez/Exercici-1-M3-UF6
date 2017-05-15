@@ -70,4 +70,6 @@ public class VistaText {
         String nif = lector.next();
         return nif;
     }
+    
+    
 }

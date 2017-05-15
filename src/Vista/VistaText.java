@@ -3,6 +3,8 @@ package Vista;
 
 import exercici.pkg1.m3.uf6.Model.Usuari;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -42,6 +44,15 @@ public class VistaText {
     }
     
     
-    
+    public List<Usuari> DemanarUsuaris(){
+        System.out.println("Quants usuaris vas a introduir?: ");
+        int tamany = lector.nextInt();
+        List<Usuari> llista = new ArrayList<>();
+        for (int i = 0; i < tamany; i++) {
+            llista.add(DemanarUsuari());
+        }
+        
+        return llista;
+    }
     
 }

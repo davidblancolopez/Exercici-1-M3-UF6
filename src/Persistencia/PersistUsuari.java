@@ -105,6 +105,11 @@ public class PersistUsuari {
         return borrat;
     }
 
+    /**
+     * Metode per a modificar la taula usuari en la BBDD.
+     * @param u
+     * @return 
+     */
     public boolean modificat(Usuari u) {
         boolean modificat = true;
 
@@ -122,6 +127,25 @@ public class PersistUsuari {
         }
 
         return modificat;
+    }
+    
+    
+    public Usuari cercar (String nif){
+        String sentencia = "SELECT * FROM Usuaris WHERE nif = ?";
+        String nom = null, cogn = null;
+        try {
+            PreparedStatement pt = con.prepareStatement(sentencia);
+            pt.setString(1, nif);
+            ResultSet rs = pt.executeQuery();
+            while (rs.next()) {
+                nom = rs.getString("nom");
+                cogn = rs.getString("cognom");
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return new Usuari(nif, nom, cogn);
+
     }
 
 }

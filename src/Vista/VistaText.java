@@ -43,7 +43,13 @@ public class VistaText {
         return new Usuari(nom, cognom, nif);
     }
     
-    
+    /**
+     * Metode per a demanar la llista d'usuaris a afegir a la BBDD.
+     * Demana el numero d'usaris que s'afegiran i fa un bucle introduint usuaris a la llista
+     * cridant al metode DemanarUsuari().
+     * 
+     * @return 
+     */
     public List<Usuari> DemanarUsuaris(){
         System.out.println("Quants usuaris vas a introduir?: ");
         int tamany = lector.nextInt();
@@ -54,5 +60,6 @@ public class VistaText {
         
         return llista;
     }
+    
     
 }

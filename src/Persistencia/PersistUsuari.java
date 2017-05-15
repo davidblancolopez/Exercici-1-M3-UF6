@@ -157,6 +157,8 @@ public class PersistUsuari {
                 nom = rs.getString("nom");
                 cognom = rs.getString("cognom");
             }
+            rs.close();
+            pt.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             
@@ -183,6 +185,8 @@ public class PersistUsuari {
                 //Afegim un nou objecte usuari a la llista.
                 llista.add(new Usuari(nom, cognom, nif));
             }
+            rs.close();
+            pt.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

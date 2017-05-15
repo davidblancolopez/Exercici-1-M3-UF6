@@ -1,4 +1,4 @@
-package exercici.pkg1.m3.uf6.Model;
+package Persistencia;
 import java.sql.*;
 import java.util.logging.Logger;
 

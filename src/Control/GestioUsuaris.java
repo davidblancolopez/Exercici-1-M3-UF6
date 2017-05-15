@@ -2,6 +2,6 @@
 package Control;
 
 
-public class Control {
+public class GestioUsuaris {
     
 }

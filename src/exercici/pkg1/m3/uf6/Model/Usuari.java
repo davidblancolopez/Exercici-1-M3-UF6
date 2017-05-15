@@ -1,5 +1,5 @@
 
-package exercici.pkg1.m3.uf6;
+package exercici.pkg1.m3.uf6.Model;
 
 
 public class Usuari {

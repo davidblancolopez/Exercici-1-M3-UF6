@@ -129,22 +129,26 @@ public class PersistUsuari {
         return modificat;
     }
     
-    
+    /**
+     * Metode per a cercar usuaris a la BBDD.
+     * @param nif
+     * @return 
+     */
     public Usuari cercar (String nif){
         String sentencia = "SELECT * FROM Usuaris WHERE nif = ?";
-        String nom = null, cogn = null;
+        String nom = null, cognom = null;
         try {
             PreparedStatement pt = con.prepareStatement(sentencia);
             pt.setString(1, nif);
             ResultSet rs = pt.executeQuery();
             while (rs.next()) {
                 nom = rs.getString("nom");
-                cogn = rs.getString("cognom");
+                cognom = rs.getString("cognom");
             }
         } catch (SQLException ex) {
             
         }
-        return new Usuari(nif, nom, cogn);
+        return new Usuari(nom, cognom, nif);
 
     }
 

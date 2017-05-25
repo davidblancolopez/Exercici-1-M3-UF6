@@ -20,6 +20,11 @@ public class GestioUsuaris {
         persist = new PersistUsuari(con);
     }
 
+    /**
+     * Metode que conte el switch del menú, rebra la opció escollida.
+     * 
+     * @param n 
+     */
     public void menu(int n) {
         switch (n) {
             case 1:
@@ -48,7 +53,10 @@ public class GestioUsuaris {
     }
     
     
-    
+    /**
+     * Metode que serveix per a recollir la opció de l'usuari.
+     * @return 
+     */
     public int demanarOpcio() {
         int num;
         while (true) {
@@ -69,6 +77,9 @@ public class GestioUsuaris {
     }
     
     
+    /**
+     * Metode que inicia el programa.
+     */
     public void iniciarPrograma() {
         while (true) {
             menu(vista.MostrarMenu());

@@ -1,6 +1,7 @@
 
 package Vista;
 
+import Control.GestioUsuaris;
 import exercici.pkg1.m3.uf6.Model.Usuari;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 public class VistaText {
     
     Scanner lector = new Scanner(System.in);
+    GestioUsuaris gu = new GestioUsuaris();
     
     /**
      * Metode per a msotrar el menú principal del programa.
@@ -25,7 +27,7 @@ public class VistaText {
                 + "\n 5. Buscar un usuari(NIF)."
                 + "\n 6. Retornar tots els usuaris."
                 + "\n 7. Sortir.");
-        opcio = lector.nextInt();
+        gu.demanarOpcio();
         return opcio;
     }
     

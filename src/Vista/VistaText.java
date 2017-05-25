@@ -15,7 +15,8 @@ public class VistaText {
     /**
      * Metode per a msotrar el menú principal del programa.
      */
-    public void MostrarMenu(){
+    public int MostrarMenu(){
+        int opcio = 0;
         System.out.println("Menú:"
                 + "\n 1. Afegir un usuari."
                 + "\n 2. Afegir llista usuaris."
@@ -24,6 +25,8 @@ public class VistaText {
                 + "\n 5. Buscar un usuari(NIF)."
                 + "\n 6. Retornar tots els usuaris."
                 + "\n 7. Sortir.");
+        opcio = lector.nextInt();
+        return opcio;
     }
     
     /**
